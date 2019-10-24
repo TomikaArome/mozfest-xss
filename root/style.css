@@ -1,6 +1,306 @@
-body {
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	/*color: #ffffff;
-	background-image: url('./img/stars.jpg');*/
+html, body {
+	margin: 0px;
+	padding: 0px;
+	width: 100vw;
+	height: 100vh;
 }
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-family: "Courier New", monospace;
+	font-size: 14px;
+	/*background-image: url('./img/stars.jpg');*/
+	background-color: hsl(0,0%,10%);
+	color: #ffffff;
+}
+
+#page {
+	position: relative;
+	display: flex;
+	flex-grow: 1;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	width: 100%;
+}
+#page:after {
+	content: "Connect to server";
+	font-size: 4em;
+	font-weight: bold;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background: hsla(0,0%,0%,0.7);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 1;
+}
+#page.connected:after {
+	opacity: 0;
+	pointer-events: none;
+}
+
+#page > div {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	flex-grow: 1;
+}
+#page > div > div {
+	width: calc(100% - 32px);
+	min-height: calc(100% - 32px);
+	border-radius: 10px;
+	overflow: hidden;
+	border: 2px solid #ffffff;
+	background-color: hsl(0,0%,0%);
+}
+#page > div > div > h1 {
+	margin: 0px;
+	padding: 8px;
+	text-align: center;
+	font-size: 1.2em;
+	background-color: hsla(0,0%,100%,0.6);
+	color: #000000;
+}
+
+#chatPane > div, #validatedChatPane > div, #examplesPane > div {
+	display: flex;
+	flex-direction: column;
+}
+#chatPane > div > h1 {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	padding: 0px !important;
+}
+#chatPane > div > h1 > span {
+	flex-grow: 1;
+	padding: 8px;
+}
+.drawerButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 34.4px;
+	cursor: pointer;
+}
+.hidden {
+	display: none !important;
+}
+
+#chatArea, #validatedChatArea {
+	position: relative;
+	flex-grow: 1;
+	display: flex;
+	height: 0px;
+}
+#chatArea > div, #validatedChatArea > div {
+	position: relative;
+	flex-grow: 1;
+	overflow-y: scroll;
+	display: block;
+}
+#chatArea > div > div, #validatedChatArea > div > div {
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding: 8px;
+	box-sizing: border-box;
+}
+.message {
+	display: flex;
+	flex-direction: row;
+	margin: 2px 0px;
+}
+.messageAuthor {
+	text-align: right;
+	min-width: 100px;
+	width: 100px;
+	font-weight: bold;
+	padding-right: 16px;
+}
+.messageContents {
+	text-align: left;
+	word-break: break-word;
+}
+
+.infoMessage {
+	font-style: italic;
+	color: hsl(0,0%,70%);
+	margin: 2px 0px;
+}
+#chatArea img {
+	max-width: 50%;
+}
+
+#textInputArea {
+	display: flex;
+	flex-direction: row;
+	background-color: hsla(0,0%,100%,0.6);
+}
+#textInputArea > * {
+	margin: 8px;
+}
+#textInputBox {
+	flex-grow: 1;
+	height: 8em;
+	margin-right: 0px;
+}
+#textInputButton {
+	padding: 20px;
+	background-color: hsl(120,20%,40%);
+}
+#textInputButton:disabled {
+	cursor: not-allowed;
+	color: hsla(0,0%,100%,0.5);
+}
+
+#examplesPane {
+	flex-basis: 50%;
+	max-width: 33%;
+}
+
+#validatedChatPane {
+	flex-basis: 50%;
+	max-width: 33%;
+}
+
+#toolbar {
+	display: flex;
+	flex-direction: row;
+	background-color: hsl(0,0%,20%);
+	border-top: 2px solid #ffffff;
+	width: 100%;
+}
+
+#connectArea {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 300px;
+	padding: 8px;
+}
+#connectArea > div {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 4px;
+}
+#connectArea > div > input, #disconnectButton {
+	flex-grow: 1;
+}
+#roomInput {
+	width: 42px;
+	margin-right: 4px;
+}
+#disconnectButton {
+	background-color: hsl(0,20%,40%);
+	margin-right: 4px;
+}
+
+input[type=text], input[type=number], textarea {
+	padding: 8px;
+	border: 1px solid #ffffff;
+	border-radius: 8px;
+	background-color: #000000;
+	outline: none;
+	color: #ffffff;
+	font-family: "Courier New", monospace;
+}
+
+button {
+	border: 1px solid #ffffff;
+	border-radius: 8px;
+	cursor: pointer;
+	font-weight: bold;
+	font-family: "Courier New", monospace;
+	color: #ffffff;
+	background-color: hsl(240,20%,40%);
+	padding: 8px 20px;
+	outline: none;
+}
+
+#examplesArea {
+	overflow-y: scroll;
+	flex-grow: 1;
+	height: 0px;
+}
+#examplesPane section {
+	padding: 8px;
+	border-bottom: 1px solid #ffffff;
+}
+#examplesPane section > h1 {
+	margin: 0px 0px 8px 0px;
+}
+#examplesPane pre {
+	position: relative;
+	margin: 0px;
+	padding: 4px;
+	border: 1px dashed hsl(0,0%,70%);
+	background-color: hsl(0,0%,15%);
+	border-radius: 6px;
+	font-size: 0.9em;
+	white-space: normal;
+	word-wrap: break-word;
+	cursor: pointer;
+	overflow: hidden;
+}
+#examplesPane pre:after {
+	content: "Add HTML to chat box";
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: hsla(0,0%,0%,0.7);
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 100ms;
+}
+#examplesPane pre:hover:after {
+	opacity: 1;
+}
+
+#colourInput, #hueInputContainer {
+	position: relative;
+	border: 1px solid #ffffff;
+	background-color: #000000;
+	outline: none;
+	cursor: pointer;
+	border-radius: 4px;
+	margin-bottom: 8px;
+}
+#colourInput, #hueInput {
+	width: calc(100% - 8px);
+}
+#hueInputContainer {
+	background-color: hsl(0,50%,50%);
+}
+
+.danger {
+	background-color: hsl(0,50%,15%);
+}
+.danger h1 {
+	color: hsl(0,75%,50%);
+}
+
+
+
+
+
+
+

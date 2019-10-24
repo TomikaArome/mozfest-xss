@@ -4,13 +4,13 @@
 
 export default class ChatMessage {
 	
-	constructor(message) {
+	constructor(messageAuthor, messageContents) {
 		
 		// The author of the message, a ChatUser object
-		this.author = null;
+		this.author = messageAuthor;
 		
 		// The text contained within the message
-		this.rawMessage = message;
+		this.rawMessage = messageContents;
 		
 		// The timestamp that the message was sent
 		this.timestamp = null;
@@ -37,6 +37,20 @@ export default class ChatMessage {
 		// Return the validated message
 		return message;
 		
+	}
+	
+	get rawHtml() {
+		return `<div class="message">
+	<div class="messageAuthor" style="color: hsl(${this.author.nicknameHue},50%,50%)">${this.author.nickname}</div>
+	<div class="messageContents">${this.rawMessage}</div>
+</div>`;
+	}
+	
+	get validatedHtml() {
+		return this.validatedMessage === "" ? "" : `<div class="message">
+	<div class="messageAuthor" style="color: hsl(${this.author.validatedNicknameHue},50%,50%)">${this.author.validatedNickname}</div>
+	<div class="messageContents">${this.validatedMessage}</div>
+</div>`;
 	}
 	
 }

@@ -2,9 +2,13 @@
  | Requires |
  *----------*/
 
-/*const express = require("express");
+const http = require("http");
+const express = require("express");
+const socketIo = require("socket.io");
 const fs = require("fs");
 const util = require("util");
+
+const ServerApp = require("./js/ServerApp.js");
 
 // Promisify the readFile method of fs
 fs.readFileAsync = util.promisify(fs.readFile);
@@ -20,11 +24,7 @@ let loggingDate = () => {
 };
 
 const httpApp = express();
-const httpServer = require("http").createServer(httpApp);
-
-httpApp.get("/js/jquery.js", (req, res) => {
-	res.redirect("https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js");
-});
+const httpServer = http.createServer(httpApp);
 
 httpApp.use(express.static("root"));
 
@@ -32,15 +32,12 @@ httpApp.get("*", (req, res) => {
 	res.status(404).send("No resource at this location");
 });
 
-const io = require("socket.io")(httpServer);
-io.on("connection", (socket) => {
-	console.log(socket.id);
-	console.log(loggingDate() + " A user connected");
-	socket.on('chat message', function(msg){
-		console.log('message: ' + msg);
-	});
+httpServer.listen(80, () => {
+	console.log(loggingDate() + " Server listening on port 80");
 });
 
-httpApp.listen(80, () => {
-	console.log(loggingDate() + " Server listening on port 80");
-});*/
+const io = socketIo.listen(httpServer);
+let chatApp = new ServerApp();
+io.on("connection", (socket) => {
+	chatApp.onConnect(socket);
+});

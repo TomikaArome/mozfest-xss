@@ -2,11 +2,85 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+		<script src="js/socket.io.js"></script>
 		<script type="module" src="js/main.js"></script>
-		<!--<link rel="stylesheet" href="style.css">-->
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<button id="connectButton">Connect to server</button>
+		<div id="page">
+			<div id="examplesPane">
+				<div>
+					<h1>Examples</h1>
+					<div id="examplesArea">
+						<section>
+							<h1>Bold text</h1>
+							<pre>&lt;b&gt;Bold text&lt;/b&gt;</pre>
+						</section>
+						<section>
+							<h1>Italic text</h1>
+							<pre>&lt;i&gt;Italic text&lt;/i&gt;</pre>
+						</section>
+						<section>
+							<h1>Underlined text</h1>
+							<pre>&lt;u&gt;Underlined text&lt;/u&gt;</pre>
+						</section>
+						<section>
+							<h1>Coloured text</h1>
+							<input type="color" id="colourInput" value="#ff0000">
+							<pre id="colourPre">&lt;span style=&quot;color:#ff0000;&quot;&gt;Coloured text&lt;/span&gt;</pre>
+						</section>
+						<section>
+							<h1>Image</h1>
+							<pre>&lt;img src=&quot;http://localhost/rocket.png&quot; /&gt;</pre>
+						</section>
+						<section>
+							<h1>Alert</h1>
+							<pre>&lt;script&gt;
+	alert(&quot;Message goes here!&quot;);
+&lt;/script&gt;</pre>
+						</section>
+						<section>
+							<h1>Name colour</h1>
+							<div id="hueInputContainer"><input id="hueInput" type="range" min="0" max="359" value="0"></div>
+							<pre id="huePre">&lt;script&gt;
+	app.changeColour(0);
+&lt;/script&gt;</pre>
+						</section>
+						<section class="danger">
+							<h1>Redirection</h1>
+							<pre>&lt;script&gt;
+	window.location.href = &quot;https://google.co.uk/&quot;;
+&lt;/script&gt;</pre>
+						</section>
+					</div>
+				</div>
+			</div>
+			<div id="chatPane">
+				<div>
+					<h1>
+						<div id="examplesPaneDrawerButton" class="drawerButton">&lt;</div>
+						<span>Chat</span>
+						<div id="validatedChatPaneDrawerButton" class="drawerButton">&gt;</div>
+					</h1>
+					<div id="chatArea"><div><div></div></div></div>
+					<div id="textInputArea">
+						<textarea id="textInputBox"></textarea>
+						<button id="textInputButton" disabled>Send!</button>
+					</div>
+				</div>
+			</div>
+			<div id="validatedChatPane">
+				<div>
+					<h1>Validated chat</h1>
+					<div id="validatedChatArea"><div><div></div></div></div>
+				</div>
+			</div>
+		</div>
+		<div id="toolbar">
+			<div id="connectArea">
+				<div><input type="text" id="nameInput" placeholder="Nickname"></div>
+				<div><button id="disconnectButton" class="hidden">Disconnect</button><input type="number" id="roomInput" placeholder="Room" value="1"><button id="connectButton">Connect</button></div>
+			</div>
+		</div>
 	</body>
 </html>
