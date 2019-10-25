@@ -12,7 +12,7 @@ body {
 	justify-content: center;
 	font-family: "Courier New", monospace;
 	font-size: 14px;
-	/*background-image: url('./img/stars.jpg');*/
+	background-image: url('./stars.jpg');
 	background-color: hsl(0,0%,10%);
 	color: #ffffff;
 }
@@ -180,7 +180,7 @@ body {
 #toolbar {
 	display: flex;
 	flex-direction: row;
-	background-color: hsl(0,0%,20%);
+	background-color: hsla(0,0%,0%,0.7);
 	border-top: 2px solid #ffffff;
 	width: 100%;
 }
@@ -298,6 +298,9 @@ button {
 	color: hsl(0,75%,50%);
 }
 
+a {
+	color: #82bfff;
+}
 
 
 
